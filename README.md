@@ -38,3 +38,8 @@ the each pixels value in a row. If the resultant sum of row is zero that means n
 
 Once the lines in an extracted vehicle number plate are separated, the line separation process is now applied column wise so that individual character can be separated. The separated individual characters are then stored in separate variables. The OCR is now used to compare the each individual character against the complete alphanumeric database. The OCR actually uses correlation method to match individual character and finally the number is identified and stored in string format in a variable. The string is then compared with the stored database for the vehicle authorization. The resultant signals are given according to the result of comparison.
 
+## RESULT
+
+![image](https://github.com/im-vysakh/NPR-Project/assets/134374340/d7075c6e-69bf-4b82-878a-9170231fb3eb)
+
+
