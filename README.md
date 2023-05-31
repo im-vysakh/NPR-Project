@@ -39,7 +39,11 @@ the each pixels value in a row. If the resultant sum of row is zero that means n
 Once the lines in an extracted vehicle number plate are separated, the line separation process is now applied column wise so that individual character can be separated. The separated individual characters are then stored in separate variables. The OCR is now used to compare the each individual character against the complete alphanumeric database. The OCR actually uses correlation method to match individual character and finally the number is identified and stored in string format in a variable. The string is then compared with the stored database for the vehicle authorization. The resultant signals are given according to the result of comparison.
 
 ## RESULT
+Different images of cars having different colors and structure types are taken and stored in PC. The different effects of the day lights are also considered during the processing. After capturing the image the next step was the yellow search algorithm. Figure 4 shows the images after the executing the yellow search algorithm. The white region represents the yellow or color closer to the yellow. It can be observed that the yellow search algorithm successfully detect the ROI that only contain vehicle number plate. The smearing algorithm used next to extract the vehicle number plate as shown in figure 5. Once the vehicle number plate is extracted, it is converted into the binary format. Figure 6 and figure 7 show the binary and inverted binary format respectively. The row and column segmentations methods are used next to extract the individual character in the vehicle number plate. The results of the row and column segmentation are shown in figure 8 and figure 9 respectively. Finally OCR is used for character recognition and each and every alphanumeric character is recognized 
 
-![image](https://github.com/im-vysakh/NPR-Project/assets/134374340/d7075c6e-69bf-4b82-878a-9170231fb3eb)
-
-
+![p1](https://github.com/im-vysakh/NPR-Project/assets/134374340/8d223bcf-4b30-47f1-a40b-6ca1a852f7a8) 
+![p2](https://github.com/im-vysakh/NPR-Project/assets/134374340/aee8c58c-b6a5-4412-8163-3622a1fbbf78)
+![p3](https://github.com/im-vysakh/NPR-Project/assets/134374340/1ea0b3a0-79b5-481e-9e41-9cbf6753dc68)
+![p4](https://github.com/im-vysakh/NPR-Project/assets/134374340/3d55e6ef-03df-4e36-9f0e-0fc40bc7d0b1)
+![p5](https://github.com/im-vysakh/NPR-Project/assets/134374340/3533e07f-5e3b-45c6-bf0c-f705706c5baf)
+![p6](https://github.com/im-vysakh/NPR-Project/assets/134374340/507c4f84-0de8-4628-b5d9-f7134ee8a126)
