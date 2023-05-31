@@ -21,25 +21,50 @@ image. The third section use image segmentation technique to get individual char
 optical character recognition (OCR) to recognize the individual character with the help of
 database stored for each and every alphanumeric character.
 
-##  SOFTWARE MODEL
-The main and the most important portion of this system is the software model. The software model use series of image processing techniques which are implemented in OPEN CV. The ANPR algorithm is broadly divided into three parts:
+##  TOOLS Used
+### 1 CSV FILE
+CSV stands for Comma Separated Values. A comma -separated values file is a delimited text file that uses a comma to separate values. Each line of the file is a data record. Each record consists of one or more fields, separated by commas. The use of the comma as a field separator is the source of the name for this file format.
 
-• Capture image
+### 2 MODULES USED
+1. NumPy: NumPy is a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large
+collection of high-level mathematical functions to operate on these arrays. Used here for: Converting image to matrix.
 
-• Extract the plate from the image
+2. Open CV: OpenCV stands for Open Source Computer Vision. It is an open source computer vision and machine learning software library. The library
+has more than 2500 optimized algorithms, which includes a comprehensive set of both classic and state-of-the-art computer vision and machine learning
+algorithms. These algorithms can be used to detect and recognize faces, identify objects, classify human actions in videos, track camera movements, track moving objects, extract 3D models of objects, produce 3D point clouds from stereo cameras, stitch images together to produce a high resolution image of an entire scene, find similar images from an image database, remove red eyes from images taken using flash, follow eye movements,
 
-• Recognize the numbers from the extracted plate
+3. Imutils: Imutils include a series of convenience functions to make basic image processing functions such as translation, rotation, resizing,
+skeletonization, and displaying Matplotlib images easier with OpenCV and both Python 2.7 and Python 3. Used here for: Resizing the image.
 
-The first step is the capturing of an image using the USB camera connected to the PC. The images are captured in RGB format so it can be further process for the number plate extraction. The second step of the ANPR algorithm is the extraction of the number plate in an image. A yellow search algorithm is used to extract the likelihood ROI in an image. As the official number plate of Sindh has yellow background with alphanumeric character written in
-black, it is easy to detect the plate area by searching for yellow pixels. The image is search for the yellow color pixels or some which are closer to yellow in value. If pixel value is of yellow color the pixel is set to 1, otherwise the pixel value is set to 0. The image obtained after the search algorithm is in black and white format. After identify the ROI, image is then filtered using two different filtering techniques. The first technique involves removing of all white patches that are connected to any border and set their pixel value to 0. The second filtering technique use pixel count method to remove the small regions in an image other than the plate region. The number of consecutive white pixels is inspected and regions that contain number of white pixels less than the predefined threshold are set to 0. At this stage the image contains only the vehicle number plate. Smearing algorithm [x] is used next to extract the number plate in an image. The smearing algorithm is search for the first and last white pixels starting from top left corner of an image. The image is then cropped that only contain the vehicle number plate.
+4. Pytesseract: Library to use the Tesseract-OCR. Tesseract is an optical character recognition engine for various operating systems. Tesseract is
+considered to be one of the most accurate open-source OCR engines available. What is OCR? Optical character recognition or optical character reader is the electronic or mechanical conversion of images of typed, handwritten or printed text into machine-encoded text, whether from a scanned document, a photo of a document, a scene-photo or from subtitle text superimposed on an image. Used here for: Converting cropped number plate image obtained into text.
 
-The third step of the developed ANRP algorithm uses Optical Character Recognition (OCR) algorithm to recognize the vehicle number. The resultant cropped image obtained after the second step is inverted i.e. all white pixels are converted to black and black pixels to white. Now the text is in white and the plate background is black. Before applying the OCR the individual lines in the text are separated using line separation process. The line separation adds
-the each pixels value in a row. If the resultant sum of row is zero that means no text pixel is present in a row and if the resultant sum of row is greater than zero that means the text is present in row. The first resultant sum greater than zero represents the start of the line and after this the first resultant sum equal to zero represents the end of the line. The start and end values of the line is used to crop the first line in the text. The same process continues to separate the second line in the text.
+5. Pandas: In computer programming, pandas is a software library written for the Python programming language for data manipulation and analysis. Used here for: Converting data extracted to a Data Frame.
 
-Once the lines in an extracted vehicle number plate are separated, the line separation process is now applied column wise so that individual character can be separated. The separated individual characters are then stored in separate variables. The OCR is now used to compare the each individual character against the complete alphanumeric database. The OCR actually uses correlation method to match individual character and finally the number is identified and stored in string format in a variable. The string is then compared with the stored database for the vehicle authorization. The resultant signals are given according to the result of comparison.
+6. Time: The time() function returns the number of seconds passed since epoch.
+
+## PROCEDURE
+1. Read the original image
+
+2. Resize the image
+
+3. Convert it to grayscale.
+
+4. Apply Bilateral Filter (bilateral filter is a non-linear, edge-preserving, and noise-reducing smoothing filter for images. It replaces the intensity of each pixel with a weighted average of intensity values from nearby pixels)
+
+5. Identify and store the Canny edges (the Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images)
+
+6. Find the contours in from the edges detected and sort the top 30 contours.
+
+7. Get the perimeter of each contour and select those with 4 corners.
+
+8. Mask all other parts of the image and show the final image.
+
+9. Read the text using Tesseract OCR.
+
+10. Append to CSV file.
 
 ## RESULT
-Different images of cars having different colors and structure types are taken and stored in PC. The different effects of the day lights are also considered during the processing. After capturing the image the next step was the yellow search algorithm. Figure 4 shows the images after the executing the yellow search algorithm. The white region represents the yellow or color closer to the yellow. It can be observed that the yellow search algorithm successfully detect the ROI that only contain vehicle number plate. The smearing algorithm used next to extract the vehicle number plate as shown in figure 5. Once the vehicle number plate is extracted, it is converted into the binary format. Figure 6 and figure 7 show the binary and inverted binary format respectively. The row and column segmentations methods are used next to extract the individual character in the vehicle number plate. The results of the row and column segmentation are shown in figure 8 and figure 9 respectively. Finally OCR is used for character recognition and each and every alphanumeric character is recognized 
 
 ![p1](https://github.com/im-vysakh/NPR-Project/assets/134374340/8d223bcf-4b30-47f1-a40b-6ca1a852f7a8) 
 ![p2](https://github.com/im-vysakh/NPR-Project/assets/134374340/aee8c58c-b6a5-4412-8163-3622a1fbbf78)
