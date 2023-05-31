@@ -25,7 +25,9 @@ database stored for each and every alphanumeric character.
 The main and the most important portion of this system is the software model. The software model use series of image processing techniques which are implemented in OPEN CV. The ANPR algorithm is broadly divided into three parts:
 
 • Capture image
+
 • Extract the plate from the image
+
 • Recognize the numbers from the extracted plate
 
 The first step is the capturing of an image using the USB camera connected to the PC. The images are captured in RGB format so it can be further process for the number plate extraction. The second step of the ANPR algorithm is the extraction of the number plate in an image. A yellow search algorithm is used to extract the likelihood ROI in an image. As the official number plate of Sindh has yellow background with alphanumeric character written in
