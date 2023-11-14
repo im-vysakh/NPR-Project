@@ -1,4 +1,4 @@
-# ANPR-Project
+# Automatic Number Plate Recognition using OpenCV
 
 ## INTRODUCTION
 The Automatic Number Plate Recognition (ANPR) is simply the ability to automatically
